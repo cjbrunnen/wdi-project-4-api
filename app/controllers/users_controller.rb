@@ -18,7 +18,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
-      render json: @user, status: :created, location: @user
+      render json: @user, status: :created
     else
       render json: @user.errors, status: :unprocessable_entity
     end
@@ -49,3 +49,6 @@ class UsersController < ApplicationController
       params.require(:user).permit(:username, :first_name, :last_name, :email, :password_digest, :crb, :role)
     end
 end
+
+# taken out of create user.save to get rid of unprocessable_entity error:
+# location: @user

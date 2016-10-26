@@ -28,11 +28,14 @@ module Bsitter
     config.api_only = true
 
     config.middleware.insert_before 0, Rack::Cors do
-      allow do
-        origins '*'
-        resource '*', :headers => :any, :methods => [:get, :post, :options]
-      end
-    end
+     allow do
+       origins '*'
+       resource '*',
+         headers: :any,
+         methods: [:get, :post, :put, :patch, :delete, :options, :head]
+     end
+   end
+
     config.autoload_paths << Rails.root.join('lib')
   end
 end
